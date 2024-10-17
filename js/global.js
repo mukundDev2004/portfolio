@@ -22,6 +22,35 @@ themeToggle.addEventListener("click", function () {
         localStorage.setItem("theme", "dark");
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Detect system color scheme preference
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (prefersDarkScheme) {
+        document.body.classList.add('dark-mode');
+        themeToggle.textContent = '☀️'; // Sun icon for light mode
+    } else {
+        document.body.classList.remove('dark-mode');
+        themeToggle.textContent = '🌙'; // Moon icon for dark mode
+    }
+
+    // Allow user to toggle manually as well
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+    });
+});
+
+
+
+
 // Initialize Lenis for smooth scrolling
 const lenis = new Lenis({
     duration: 1.2,
@@ -60,10 +89,27 @@ sections.forEach((section) => {
 // Avatar interaction based on mouse movement
 const avatar = document.getElementById('avatar');
 
+// Change the avatar position based on mouse movement
 document.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    
-    // Calculate the movement based on mouse position
-    avatar.style.transform = `translate(-50%, -50%) translate(${(x / window.innerWidth) * 10 - 5}px, ${(y / window.innerHeight) * 10 - 5}px)`;
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    avatar.style.transform = `translate(${mouseX / 20}px, ${mouseY / 20}px)`;
+});
+
+// Add a click event to the avatar
+avatar.addEventListener('click', () => {
+    alert('Hello! I am your guide through this portfolio.');
+    // Add more complex interaction or dialogue here later
+});
+const dialogueBox = document.getElementById('avatar-dialogue');
+
+// Click to show dialogue message
+avatar.addEventListener('click', () => {
+    dialogueBox.innerText = 'Hello! I will guide you through this portfolio.';
+    dialogueBox.style.display = 'block';
+
+    // Hide dialogue after 3 seconds
+    setTimeout(() => {
+        dialogueBox.style.display = 'none';
+    }, 3000);
 });
