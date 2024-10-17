@@ -1,0 +1,42 @@
+
+ 1. Folder Structure:
+```
+/portfolio-project
+    /assets
+        /images (for all images, including avatar)
+        /fonts (if any custom fonts)
+    /components (for reusable components like header, footer, etc.)
+    /pages (for different sections of the portfolio)
+        /home (main landing page)
+        /about (about you and the project)
+        /projects (your work showcase)
+        /contact (contact information)
+    /css
+        global.css (common CSS for entire project)
+        home.css (CSS for home page)
+        about.css (CSS for about page)
+        projects.css (CSS for projects page)
+        contact.css (CSS for contact page)
+    /js
+        global.js (common JS for entire project)
+        home.js (JS for home page)
+        about.js (JS for about page)
+        projects.js (JS for projects page)
+        contact.js (JS for contact page)
+    index.html (main entry point)
+    README.md (we'll create this after significant progress)
+```
+
+ 2. Theme Setup:
+- CSS Variables for easy theming:
+  - Define a color palette for light and dark themes using CSS variables.
+  - Use media queries to detect system theme preferences.
+  - Add a theme toggle button for manual switching.
+
+ 3. Basic HTML Structure:
+- Set up a basic HTML structure with a scroll-controlled header, sections for home, about, projects, and contact, and placeholders for the avatar and animations.
+
+ 4. Smooth Scroll and Libraries:
+- Integrate Lenis for smooth scrolling and Locomotion.js or Framer Motion for subtle animations.
+  
+Once this is done, we can add more components and focus on the interactive avatar and animations. Does this initial plan sound good to you before we start coding the first parts?

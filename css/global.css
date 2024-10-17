@@ -1,0 +1,84 @@
+/* Define light and dark theme colors using CSS variables */
+:root {
+    --bg-color-light: #f0f0f0;
+    --text-color-light: #333;
+    --accent-color-light: #3a7bd5;
+
+    --bg-color-dark: #1b1b1b;
+    --text-color-dark: #e0e0e0;
+    --accent-color-dark: #4a90e2;
+}
+
+/* Base styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header styling */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: var(--bg-color-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Simple navigation styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color-light);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+    background-color: var(--accent-color-light);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+/* Smooth transitions between themes */
+[data-theme="dark"] {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+[data-theme="dark"] header {
+    background-color: var(--bg-color-dark);
+}
+
+[data-theme="dark"] #theme-toggle {
+    background-color: var(--accent-color-dark);
+}
+
+/* Avatar styling */
+#avatar-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the avatar */
+    width: 100px; /* You can adjust this size as needed */
+    height: 100px; /* Adjust accordingly */
+    z-index: 999; /* Ensure it stays above other elements */
+}
+
+#avatar {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
