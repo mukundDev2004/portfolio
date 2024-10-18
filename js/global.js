@@ -113,3 +113,65 @@ avatar.addEventListener('click', () => {
         dialogueBox.style.display = 'none';
     }, 3000);
 });
+
+let isQuietMode = false;
+
+const quietModeToggle = document.getElementById('quiet-mode-toggle');
+quietModeToggle.addEventListener('click', () => {
+    isQuietMode = !isQuietMode;
+    quietModeToggle.innerText = isQuietMode ? 'Sound Mode' : 'Quiet Mode';
+});
+const speak = (text) => {
+    if (!isQuietMode && 'speechSynthesis' in window) {
+        const message = new SpeechSynthesisUtterance(text);
+        message.lang = 'en-US';
+
+        // Display the dialogue box
+        dialogueBox.innerText = text;
+        dialogueBox.style.display = 'block';
+
+        // Hide the dialogue when speech ends
+        message.onend = () => {
+            dialogueBox.style.display = 'none';
+        };
+
+        window.speechSynthesis.speak(message);
+    } else {
+        // Show subtitle without speech in quiet mode
+        dialogueBox.innerText = text;
+        dialogueBox.style.display = 'block';
+        setTimeout(() => {
+            dialogueBox.style.display = 'none';
+        }, 3000);
+    }
+};
+
+
+// Example voice-over when clicking the avatar
+avatar.addEventListener('click', () => {
+    const dialogue = 'Hello! I am your guide through this portfolio. Let me show you around.';
+    dialogueBox.innerText = dialogue;
+    dialogueBox.style.display = 'block';
+    speak(dialogue);
+
+    setTimeout(() => {
+        dialogueBox.style.display = 'none';
+    }, 3000);
+});
+
+
+const isMobile = window.innerWidth <= 768;
+
+if (isMobile) {
+    avatar.addEventListener('touchstart', () => {
+        const dialogue = 'Tap to interact with me!';
+        dialogueBox.innerText = dialogue;
+        speak(dialogue);
+    });
+} else {
+    avatar.addEventListener('click', () => {
+        const dialogue = 'Hello! Let me guide you through this portfolio.';
+        dialogueBox.innerText = dialogue;
+        speak(dialogue);
+    });
+}
