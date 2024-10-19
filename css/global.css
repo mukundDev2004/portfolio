@@ -151,6 +151,23 @@ nav ul li a {
     outline: none; /* Remove focus outline for better appearance */
 }
 
+
+/* quiet-mode-toggle */
+#quiet-mode-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 40px;
+}
+
+#quiet-mode-toggle:focus {
+    outline: none; /* Remove focus outline for better appearance */
+}
+
 /* Smooth transitions between themes */
 [data-theme="dark"] {
     background-color: var(--bg-color-dark);

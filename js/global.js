@@ -86,6 +86,20 @@ sections.forEach((section) => {
         }
     );
 });
+
+
+// all about avatar voice
+
+let isSpeaking = false;
+let isQuietMode = false;
+
+const quietModeToggle = document.getElementById('quiet-mode-toggle');
+quietModeToggle.addEventListener('click', () => {
+    isQuietMode = !isQuietMode;
+    if (isQuietMode) {    window.speechSynthesis.cancel(); }
+    quietModeToggle.innerText = isQuietMode ? '🔈x' : '🔊';
+});
+
 // Avatar interaction based on mouse movement
 const avatar = document.getElementById('avatar');
 
@@ -96,46 +110,54 @@ document.addEventListener('mousemove', (e) => {
     avatar.style.transform = `translate(${mouseX / 20}px, ${mouseY / 20}px)`;
 });
 
-// Add a click event to the avatar
-avatar.addEventListener('click', () => {
-    alert('Hello! I am your guide through this portfolio.');
-    // Add more complex interaction or dialogue here later
-});
+
 const dialogueBox = document.getElementById('avatar-dialogue');
 
-// Click to show dialogue message
-avatar.addEventListener('click', () => {
-    dialogueBox.innerText = 'Hello! I will guide you through this portfolio.';
-    dialogueBox.style.display = 'block';
+// Get the list of voices available on the device
+let voices = [];
 
-    // Hide dialogue after 3 seconds
-    setTimeout(() => {
-        dialogueBox.style.display = 'none';
-    }, 3000);
-});
+function populateVoiceList() {
+    voices = window.speechSynthesis.getVoices();
+}
 
-let isQuietMode = false;
+// Ensure voices are loaded when available
+populateVoiceList();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+}
 
-const quietModeToggle = document.getElementById('quiet-mode-toggle');
-quietModeToggle.addEventListener('click', () => {
-    isQuietMode = !isQuietMode;
-    quietModeToggle.innerText = isQuietMode ? 'Sound Mode' : 'Quiet Mode';
-});
-const speak = (text) => {
+// Enhanced speak function with the option to change voice
+const speak = (text, rate = 1, voiceName = 'Google US English', pitch = 1) => {
+
     if (!isQuietMode && 'speechSynthesis' in window) {
-        const message = new SpeechSynthesisUtterance(text);
-        message.lang = 'en-US';
+        if (!isSpeaking) {
+            isSpeaking = true;
+            const message = new SpeechSynthesisUtterance(text);
+            message.lang = 'en-US'; // Default to US English
+            message.pitch = pitch;  // Adjust pitch (1 is normal, 2 is high-pitched)
+            message.rate = rate;    // Adjust rate (1 is normal, >1 is faster, <1 is slower)
+            // Filter and select the desired voice by name
+            const selectedVoice = voices.find(voice => voice.name === voiceName);
 
-        // Display the dialogue box
-        dialogueBox.innerText = text;
-        dialogueBox.style.display = 'block';
+            // If a matching voice is found, use it
+            if (selectedVoice) {
+                message.voice = selectedVoice;
+            }
+            
+            // Display the dialogue box
+            dialogueBox.innerText = text;
+            dialogueBox.style.display = 'block';
 
-        // Hide the dialogue when speech ends
-        message.onend = () => {
-            dialogueBox.style.display = 'none';
-        };
+            // Hide the dialogue when speech ends
+            message.onend = () => {
+                isSpeaking = false;
+                dialogueBox.style.display = 'none';
+            };
 
-        window.speechSynthesis.speak(message);
+            // Speak the message
+            console.log("speak");
+            window.speechSynthesis.speak(message);
+        }
     } else {
         // Show subtitle without speech in quiet mode
         dialogueBox.innerText = text;
@@ -146,32 +168,22 @@ const speak = (text) => {
     }
 };
 
-
 // Example voice-over when clicking the avatar
 avatar.addEventListener('click', () => {
-    const dialogue = 'Hello! I am your guide through this portfolio. Let me show you around.';
-    dialogueBox.innerText = dialogue;
-    dialogueBox.style.display = 'block';
-    speak(dialogue);
+    const isMobile = window.innerWidth <= 768;
 
-    setTimeout(() => {
-        dialogueBox.style.display = 'none';
-    }, 3000);
+    if (isMobile) {
+        avatar.addEventListener('touchstart', () => {
+            const dialogue = 'Welcome! This is a new voice speaking!';
+            speak(dialogue, 1.2, 'Google UK English Male', 1.2);  // Change to another voice for mobile
+        });
+    } else {
+        avatar.addEventListener('click', () => {
+            const dialogue = 'tum kon ho';
+            speak(dialogue, 1.2, 'Google UK English Male', 1.3);  // Change to a different voice for desktop
+        });
+    }
 });
-
-
-const isMobile = window.innerWidth <= 768;
-
-if (isMobile) {
-    avatar.addEventListener('touchstart', () => {
-        const dialogue = 'Tap to interact with me!';
-        dialogueBox.innerText = dialogue;
-        speak(dialogue);
-    });
-} else {
-    avatar.addEventListener('click', () => {
-        const dialogue = 'Hello! Let me guide you through this portfolio.';
-        dialogueBox.innerText = dialogue;
-        speak(dialogue);
-    });
-}
+window.addEventListener('beforeunload', () => {
+    window.speechSynthesis.cancel();  // Stop any ongoing or queued speech
+});
