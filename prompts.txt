@@ -1,0 +1,33 @@
+i'll keep giving you data and descriptions of my project needs and i don't want results immideatly, i want you to take all my data into consideration and reapeat what you understood out of it, then when i confirm you with "start project", youll first build a infrastructure of the project and then we'll start working on it with a proper sequence
+
+-------------------------------------------
+
+so, im thinking of makind a simple html, css and js project and with some pages and every page will consist of scroll animations, cursor animation and many type of other animations and feel free to suggest me different libraries and animation types, if possible i'd like to add an avatar of myself that guides the viewer through out the portfolio and with interative dialogues and interation with mouse as well
+
+the whole project will be component based for reusable components
+
+i wanna keep some common css and js files for the whole project the contain base of the whole project and i wanna keep seperate css and js files for every page for unique features of the pages
+
+after we finish making any major component or any significant part of the project youll guide me to push on my github profile and help me manage the github reposetory of this project and make readme.md for this project as well once we finalize important stuff
+
+-------------------------------------------
+
+okay so i wanna have a light and dark theme for whole project that takes the system default as well as a button to switch, and header with all the link of the project and the header should be scroll CONTROLLED as well.
+
+apply smooth scroll and other features to the project for better and streamline experence, use libraries like locomotionjs, lennis, swiperjs, framermotion or other that you recommend to make the animations and controlls better
+
+-------------------------------------------
+
+i need my avatar to interat as well as ill give it voice over and subtitles for various things to guide the viewer and there will be a button to view the site in quiet mode,
+
+the site should be responsive for mobile and any other screen type and resoluton and zooming in and out of the page will be locked on every device, there will be less features and animations for mobile devices maybe but i wanna make it smooth and clean to view
+
+help me with the color scheme for both light and dark theme
+
+-------------------------------------------
+
+the project shouldnt be too futuristic or too complicated it should seem soothing with all the animations
+
+-------------------------------------------
+
+start project

@@ -67,25 +67,7 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-// Animate sections on scroll
-const sections = document.querySelectorAll('section');
 
-sections.forEach((section) => {
-    gsap.fromTo(
-        section,
-        { opacity: 0, y: 50 },
-        {
-            opacity: 1,
-            y: 0,
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                end: "bottom 60%",
-                scrub: true
-            }
-        }
-    );
-});
 
 
 // all about avatar voice

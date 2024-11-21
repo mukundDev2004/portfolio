@@ -14,6 +14,23 @@
     --background-color-dark: #1a1a1a;
     --text-color-dark: #f0f0f0;
 }
+
+
+
+/* Smooth transitions between themes */
+[data-theme="dark"] {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+[data-theme="dark"] header {
+    background-color: var(--bg-color-dark);
+}
+[data-theme="dark"] a {
+    color: var(--bg-color-li);
+}
+
+
 /* Dark theme */
 .dark-theme {
     background-color: var(--background-color-dark);
@@ -36,12 +53,6 @@ body {
     color: var(--text-color-light);
     transition: background-color 0.3s, color 0.3s;
 }
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: Arial, sans-serif;
@@ -49,6 +60,14 @@ body {
     padding: 0;
     transition: background-color 0.3s ease;
 }
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 .content {
     height: 1500px; /* For demo purposes */
@@ -168,18 +187,7 @@ nav ul li a {
     outline: none; /* Remove focus outline for better appearance */
 }
 
-/* Smooth transitions between themes */
-[data-theme="dark"] {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-}
 
-[data-theme="dark"] header {
-    background-color: var(--bg-color-dark);
-}
-[data-theme="dark"] a {
-    color: var(--bg-color-li);
-}
 
 
 
@@ -235,3 +243,4 @@ nav ul li a {
         font-size: 10px;
     }
 }
+

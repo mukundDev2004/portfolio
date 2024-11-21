@@ -1,0 +1,127 @@
+:root {
+    --bg-color-light: #f0f0f0;
+    --text-color-light: #333;
+    --accent-color-light: #3a7bd5;
+
+    --bg-color-dark: #1b1b1b;
+    --text-color-dark: #e0e0e0;
+    --accent-color-dark: #4a90e2;
+}
+:root {
+    --background-color-light: #f0f0f0;
+    --text-color-light: #333;
+    --background-color-dark: #1a1a1a;
+    --text-color-dark: #f0f0f0;
+}
+
+/* Smooth transitions between themes */
+[data-theme="dark"] {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+[data-theme="dark"] header {
+    background-color: var(--bg-color-dark);
+}
+[data-theme="dark"] a {
+    color: var(--bg-color-li);
+}
+
+html, body {
+    height: 100%;
+}
+.full-height {
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color:  var(--background-color-dark);
+    margin: 0;
+    padding: 20px;
+}
+
+#about, #projects, #contact {
+    background-color: var(--background-color-dark); /* Slightly different background colors */
+}
+
+
+
+.scroll-image {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+  
+  .scroll-image img {
+    width: 100%;
+    height: auto;
+    clip-path: polygon(49% 100%, 50% 50%, 50% 50%, 50% 0%); 
+    transition: transform 0.6s ease; /* Smoother transition */
+  }
+  
+  .cut-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0); /* Can be transparent to reveal the image */
+    /* clip-path: polygon(49% 100%, 50% 50%, 50% 50%, 50% 0%); */
+    transform-origin: center center;
+    transition: transform 0.6s ease;
+    z-index: 2; /* Ensure it's above the image */
+  }
+  body {
+    margin: 0;
+    height: 200vh; /* To ensure there is enough space to scroll */
+  }
+  
+  .scroll-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .clock {
+    position: fixed;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    border: 5px solid #333;
+  }
+  
+  .clock-hand .clock-hand1{
+    position: absolute;
+    width: 50%;
+    height: 5px;
+    background-color: #333;
+    top: 50%;
+    left: 50%;
+    
+    transform-origin: 0% 50%;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-out;
+  }
+  .clock-hand1{
+    transform-origin: 0% 50%;
+    transform: rotate(90deg);
+    transition: transform 0.5s ease-out;
+  }
+  .hidden-section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+  }
+  
