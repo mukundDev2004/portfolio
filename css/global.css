@@ -196,7 +196,7 @@ nav ul li a {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centers the avatar */
+    transform: translate(-100%, -85%); /* Centers the avatar */
     width: 100px; /* You can adjust this size as needed */
     height: 100px; /* Adjust accordingly */
     z-index: 999; /* Ensure it stays above other elements */
